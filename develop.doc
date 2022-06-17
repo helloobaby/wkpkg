@@ -4,4 +4,8 @@ https://github.com/helloobaby/driver-utils-test
 https://github.com/helloobaby/driver-utils-test/archive/refs/heads/master.zip
 
 
-wkpkg install https://github.com/yuyuaqwq/YSignatureCode.git
+wkpkg install https://github.com/yuyuaqwq/YSignatureCode.git C:\Users\asdf\source\repos\algo\algo\algo.vcxproj
+
+wkpkg install https://github.com/helloobaby/driver-utils-test.git C:\Users\asdf\source\repos\algo\algo\algo.vcxproj
+
+cmd命令与powershell并不兼容。

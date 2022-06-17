@@ -33,7 +33,7 @@ fn main() -> Result<()>{
 
 
     //处理每个命令
-    match cmd2.as_str(){
+    let err = match cmd2.as_str(){
 
         "install" => {
             // 处理第三个参数
@@ -55,11 +55,5 @@ fn main() -> Result<()>{
 
         _ => panic!("[E]Error usage , See --help"),
     };
-
-
-
-
-
-
-    Ok(())
+    return err;
 }

@@ -5,14 +5,16 @@ use std::ops::Deref;
 use std::io::Result;
 use std::process::Command;
 use std::io::{self, Write};
-
+use std::fs;
 
 mod fix;
+mod cmd;
 
 
 ///
 ///[参数1] 本地存放包的路径
 ///[参数2] 存储包的github路径
+///[参数3] 需要修改的工程路径
 /// 
 pub fn install(pkgs_path : &String,path : &String,vcproj_path : &String) -> Result<()>{
     //println!("[T]install");
@@ -25,17 +27,25 @@ pub fn install(pkgs_path : &String,path : &String,vcproj_path : &String) -> Resu
     }
 
     //利用git从github仓库下载包(事先需要安装git)
-    println!("[I]param test cd /{} {}",&pkgs_path[0..1],pkgs_path);
-    let output = Command::new("cmd").arg("/C").arg(format!("cd /{} {}",&path[0..1],path)).output().expect("[E]no pkgs dir");
-    let output_str = String::from_utf8_lossy(&output.stdout);
-    println!("{}", output_str);
+
+
+
+    
+    //创建pkgs目录(已存在的话不覆盖)
+    //Command::new("cmd").arg("/C").arg(format!("mkdir {}",pkgs_path)).output().expect("[E]cmd excute error");
+
+    //cd到新创建的pkgs目录
+    Command::new("cmd").arg("/C").arg(format!("cd \\{} {} ",&pkgs_path[0..1],pkgs_path)).output().expect("[E]cmd excute error");
+    
+    //查看当前cmd所在路径,判断cd命令是否成功
+    //cmd::dir();
+
+    //开始clone
 
     println!("[I]start clone {}...",path);
     println!("[I]please wait for a while");
-    let output = Command::new("cmd").arg("/C").arg("git clone").arg(path).output().expect("[E]git clone error");
+    Command::new("cmd").arg("/C").arg("git clone").arg(path).output().expect("[E]git clone error");
 
-    let output_str = String::from_utf8_lossy(&output.stdout);
-    println!("{}", output_str);
 
     //判断是否clone成功
     //git clone因为网络失败是常事
