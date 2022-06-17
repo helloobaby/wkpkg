@@ -29,23 +29,14 @@ pub fn install(pkgs_path : &String,path : &String,vcproj_path : &String) -> Resu
     //利用git从github仓库下载包(事先需要安装git)
 
 
+    //cd到新创建的pkgs目录(命令要一次传,因为每次Command::new相当于一个新的cmd.exe)
+    Command::new("cmd").arg("/C").arg(format!("{}: && cd {} && git clone {} ",&pkgs_path[0..1],&pkgs_path,path)).output().expect("[E]cmd excute error");
 
-    
-    //创建pkgs目录(已存在的话不覆盖)
-    //Command::new("cmd").arg("/C").arg(format!("mkdir {}",pkgs_path)).output().expect("[E]cmd excute error");
-
-    //cd到新创建的pkgs目录
-    Command::new("cmd").arg("/C").arg(format!("cd \\{} {} ",&pkgs_path[0..1],pkgs_path)).output().expect("[E]cmd excute error");
-    
-    //查看当前cmd所在路径,判断cd命令是否成功
-    //cmd::dir();
 
     //开始clone
 
     println!("[I]start clone {}...",path);
     println!("[I]please wait for a while");
-    Command::new("cmd").arg("/C").arg("git clone").arg(path).output().expect("[E]git clone error");
-
 
     //判断是否clone成功
     //git clone因为网络失败是常事
