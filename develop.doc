@@ -8,4 +8,4 @@ wkpkg install https://github.com/yuyuaqwq/YSignatureCode.git C:\Users\asdf\sourc
 
 wkpkg install https://github.com/helloobaby/driver-utils-test.git C:\Users\asdf\source\repos\algo\algo\algo.vcxproj
 
-cmd命令与powershell并不兼容。
+wkpkg install https://github.com/helloobaby/driver-utils-test.git C:\Users\asdf\source\repos\json-parse-example\json-parse-example\json-parse-example.vcxproj.filters
